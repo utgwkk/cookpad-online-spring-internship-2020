@@ -17,6 +17,7 @@ class RecipeService < Main::Services::V1::Recipe::Service
 
     recipes = Recipe.
       preload(:user).
+      preload(:ingredients).
       preload(:steps).
       order(created_at: :desc).
       page(page).
