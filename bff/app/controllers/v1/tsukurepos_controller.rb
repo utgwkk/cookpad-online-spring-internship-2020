@@ -37,15 +37,18 @@ module V1
       rescue GRPC::NotFound
         return render status: 404
       end
+      recipe_ids = tsukurepo_response.tsukurepos.map(&:recipe_id)
+      recipe_request = Main::Services::V1::GetRecipesByIdsRequest.new(ids: recipe_ids)
+      recipes = begin
+          MainGrpcClient.stub(:recipe).get_recipes_by_ids(recipe_request).recipes
+        rescue GRPC::NotFound
+          []
+        end
+      # ここで recipe_id => recipe の辞書をつくる
+      recipe_id_to_recipe = recipes.map {|recipe| [recipe.id, recipe] }.to_h
 
       response = tsukurepo_response.tsukurepos.map do |tsukurepo|
-        recipe_request = Main::Services::V1::GetRecipeRequest.new(id: tsukurepo.recipe_id)
-        begin
-          recipe_response = MainGrpcClient.stub(:recipe).get_recipe(recipe_request)
-          tsukurepo.recipe = recipe_response.recipe
-        rescue GRPC::NotFound
-          tsukurepo.recipe = nil
-        end
+        tsukurepo.recipe = recipe_id_to_recipe[tsukurepo.recipe_id]
 
         user_request = Main::Services::V1::GetUserRequest.new(id: tsukurepo.user_id)
         begin

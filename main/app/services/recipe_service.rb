@@ -39,7 +39,7 @@ class RecipeService < Main::Services::V1::Recipe::Service
       preload(:steps).
       where(id: ids)
 
-    Main::Services::V1::GetRecipesByIDsResponse.new(
+    Main::Services::V1::GetRecipesByIdsResponse.new(
       recipes: recipes.map(&:as_protocol_buffer),
       count: Recipe.count,
     )

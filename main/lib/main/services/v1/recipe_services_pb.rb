@@ -18,7 +18,7 @@ module Main
 
           rpc :GetRecipe, GetRecipeRequest, GetRecipeResponse
           rpc :ListRecipes, ListRecipesRequest, ListRecipesResponse
-          rpc :GetRecipesByIDs, GetRecipesByIDsRequest, GetRecipesByIDsResponse
+          rpc :GetRecipesByIds, GetRecipesByIdsRequest, GetRecipesByIdsResponse
           rpc :CreateRecipe, CreateRecipeRequest, CreateRecipeResponse
           rpc :DeleteRecipe, DeleteRecipeRequest, DeleteRecipeResponse
           rpc :ListRecipesByUser, ListRecipesByUsersRequest, ListRecipesByUserResponse
