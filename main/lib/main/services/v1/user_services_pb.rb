@@ -18,6 +18,7 @@ module Main
 
           rpc :GetUser, GetUserRequest, GetUserResponse
           rpc :ListUsers, ListUsersRequest, ListUsersResponse
+          rpc :GetUsersByIds, GetUsersByIdsRequest, GetUsersByIdsResponse
           rpc :CreateUser, CreateUserRequest, CreateUserResponse
           rpc :DeleteUser, DeleteUserRequest, DeleteUserResponse
         end

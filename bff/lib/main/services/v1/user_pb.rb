@@ -14,6 +14,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       repeated :users, :message, 1, "main.resources.v1.User"
       optional :count, :uint64, 2
     end
+    add_message "main.services.v1.GetUsersByIdsRequest" do
+      repeated :ids, :uint64, 1
+    end
+    add_message "main.services.v1.GetUsersByIdsResponse" do
+      repeated :users, :message, 1, "main.resources.v1.User"
+    end
     add_message "main.services.v1.GetUserRequest" do
       optional :id, :uint64, 1
     end
@@ -39,6 +45,8 @@ module Main
     module V1
       ListUsersRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.ListUsersRequest").msgclass
       ListUsersResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.ListUsersResponse").msgclass
+      GetUsersByIdsRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.GetUsersByIdsRequest").msgclass
+      GetUsersByIdsResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.GetUsersByIdsResponse").msgclass
       GetUserRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.GetUserRequest").msgclass
       GetUserResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.GetUserResponse").msgclass
       CreateUserRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.CreateUserRequest").msgclass
