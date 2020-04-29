@@ -15,11 +15,8 @@ class TsukurepoService < TsukurepoBackend::Services::V1::Tsukurepo::Service
     page = request.page unless request.page.zero?
     per_page = request.per_page unless request.per_page.zero?
 
+    # TODO: Avoid to N+1 query, Use index
     tsukurepos = Tsukurepo.
-      preload(:user).
-      preload(:recipe).
-      preload(:ingredients).
-      preload(:steps).
       order(created_at: :desc).
       page(page).
       per(per_page)
