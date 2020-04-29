@@ -29,6 +29,17 @@ class UserService < Main::Services::V1::User::Service
     raise GRPC::NotFoundss.new(e.message)
   end
 
+  def get_users_by_ids(request, call)
+    users = User.
+      where(id: request.ids)
+
+    Main::Services::V1::GetUsersByIdsResponse.new(
+      users: users.map(&:as_protocol_buffer),
+    )
+  rescue ActiveRecord::RecordNotFound => e
+    raise GRPC::NotFoundss.new(e.message)
+  end
+
   def create_user(request, call)
     user = User.create!(
       name: request.user.name
