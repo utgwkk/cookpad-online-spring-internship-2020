@@ -7,7 +7,6 @@ import "main/resources/v1/user.proto";
 service User {
     rpc GetUser (GetUserRequest) returns (GetUserResponse) {}
     rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {}
-    rpc GetUsersByIds (GetUsersByIdsRequest) returns (GetUsersByIdsResponse) {}
     rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
     rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
 }
@@ -20,14 +19,6 @@ message ListUsersRequest {
 message ListUsersResponse {
     repeated main.resources.v1.User users = 1;
     uint64 count = 2;
-}
-
-message GetUsersByIdsRequest {
-    repeated uint64 ids = 1;
-}
-
-message GetUsersByIdsResponse {
-    repeated main.resources.v1.User users = 1;
 }
 
 message GetUserRequest {
