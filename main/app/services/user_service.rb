@@ -16,7 +16,6 @@ class UserService < Main::Services::V1::User::Service
     page = request.page unless request.page.zero?
     per_page = request.per_page unless request.per_page.zero?
 
-    # TODO: Use index
     users = User.
       order(created_at: :desc).
       page(page).
