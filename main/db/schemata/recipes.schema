@@ -3,4 +3,6 @@ create_table "recipes", id: :bigint, unsigned: true, force: :cascade, options: "
   t.integer  "user_id", null: false
   t.string   "description", null: false
   t.timestamps
+
+  t.index ["created_at"]
 end
