@@ -36,8 +36,10 @@ class RecipeService < Main::Services::V1::Recipe::Service
 
     user_id = request.user_id unless request.user_id.zero?
 
-    # TODO: Avoid to N+1 query
     recipes = Recipe.
+      preload(:user).
+      preload(:ingredients).
+      preload(:steps).
       where(user_id: user_id).
       order(created_at: :desc).
       page(page).
