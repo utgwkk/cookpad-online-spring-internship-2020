@@ -5,4 +5,5 @@ create_table "recipes", id: :bigint, unsigned: true, force: :cascade, options: "
   t.timestamps
 
   t.index ["created_at"]
+  t.index ["user_id", "created_at"]
 end
