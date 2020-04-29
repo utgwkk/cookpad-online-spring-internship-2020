@@ -31,6 +31,22 @@ class RecipeService < Main::Services::V1::Recipe::Service
     raise GRPC::NotFound.new(e.message)
   end
 
+  def get_recipes_by_ids(request, call)
+    ids = request.ids
+    recipes = Recipe.
+      preload(:user).
+      preload(:ingredients).
+      preload(:steps).
+      where(id: ids)
+
+    Main::Services::V1::GetRecipesByIDsResponse.new(
+      recipes: recipes.map(&:as_protocol_buffer),
+      count: Recipe.count,
+    )
+  rescue ActiveRecord::RecordNotFound => e
+    raise GRPC::NotFound.new(e.message)
+  end
+
   def list_recipes_by_user(request, call)
     page = request.page unless request.page.zero?
     per_page = request.per_page unless request.per_page.zero?
