@@ -20,6 +20,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       repeated :recipes, :message, 1, "main.resources.v1.Recipe"
       optional :count, :uint64, 2
     end
+    add_message "main.services.v1.GetRecipesByIDsRequest" do
+      repeated :ids, :uint64, 1
+    end
+    add_message "main.services.v1.GetRecipesByIDsResponse" do
+      repeated :recipes, :message, 1, "main.resources.v1.Recipe"
+      optional :count, :uint64, 2
+    end
     add_message "main.services.v1.CreateRecipeRequest" do
       optional :recipe, :message, 1, "main.resources.v1.Recipe"
     end
@@ -49,6 +56,8 @@ module Main
       GetRecipeResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.GetRecipeResponse").msgclass
       ListRecipesRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.ListRecipesRequest").msgclass
       ListRecipesResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.ListRecipesResponse").msgclass
+      GetRecipesByIDsRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.GetRecipesByIDsRequest").msgclass
+      GetRecipesByIDsResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.GetRecipesByIDsResponse").msgclass
       CreateRecipeRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.CreateRecipeRequest").msgclass
       CreateRecipeResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.CreateRecipeResponse").msgclass
       DeleteRecipeRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("main.services.v1.DeleteRecipeRequest").msgclass
