@@ -15,8 +15,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :count, :uint64, 2
     end
     add_message "main.services.v1.GetUserRequest" do
+      optional :id, :uint64, 1
     end
     add_message "main.services.v1.GetUserResponse" do
+      optional :user, :message, 1, "main.resources.v1.User"
     end
     add_message "main.services.v1.CreateUserRequest" do
       optional :user, :message, 1, "main.resources.v1.User"
