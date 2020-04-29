@@ -4,4 +4,6 @@ create_table "ingredients", id: :bigint, unsigned: true, force: :cascade, option
   t.string   "name", null: false
   t.integer  "position", null: false
   t.timestamps
+
+  t.index ["recipe_id", "position"]
 end
